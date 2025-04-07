@@ -36,16 +36,6 @@ const getWhitelist = () => {
 // Gérer l'événement 'ready' lorsque le bot est connecté et prêt
 client.on('ready', async () => {
     console.log(`${client.user.username} is ready!`); // Affiche que le bot est prêt
-
-    // Définir le statut du bot sur Discord
-    await client.user.setPresence({
-        activities: [{
-            name: 'Luis le best !', // Activité affichée
-            type: 'PLAYING' // Type d'activité (ici, jouer à un jeu)
-        }],
-        status: 'online' // Statut du bot (en ligne)
-    });
-
     // Charger les commandes au démarrage
     loadCommands();
 });
