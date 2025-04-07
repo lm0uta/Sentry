@@ -82,7 +82,7 @@ Si vous souhaitez contribuer ou ajouter de nouvelles fonctionnalités, vous pouv
 
 ## Licence
 
-Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE.md) pour plus de détails.
 
 ---
 
