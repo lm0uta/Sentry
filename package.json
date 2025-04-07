@@ -1,0 +1,17 @@
+{
+  "name": "discord-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@mistralai/mistralai": "^1.5.2",
+    "axios": "^1.8.4",
+    "discord.js": "^14.14.1",
+    "discord.js-selfbot-v13": "^3.6.1",
+    "dotenv": "^16.4.7",
+    "node-fetch": "^3.3.2",
+    "undici": "^6.18.0"
+  }
+}
