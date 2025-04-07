@@ -2,7 +2,7 @@
 module.exports = {
     name: 'info', // Nom de la commande
     description: 'Récupère des informations sur l\'utilisateur', // Description de la commande
-    async execute(message, args) {
+    async execute(message) {
         const userName = message.author.username; // Récupère le nom d'utilisateur de l'auteur du message
         const userId = message.author.id; // Récupère l'ID de l'utilisateur
         const userTag = message.author.tag; // Récupère le tag de l'utilisateur
