@@ -2,11 +2,13 @@
 echo Vérification des modules Node.js...
 if not exist "node_modules" (
     echo Modules manquants, installation en cours...
-    npm install
+    npm i
 ) else (
     echo Les modules sont déjà installés.
 )
 
+timeout /t 5 >nul
+
 echo Lancement du bot...
-node index.js
+node bot.js
 pause
