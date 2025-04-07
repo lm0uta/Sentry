@@ -11,7 +11,7 @@ module.exports = {
             // Validation : s'assurer que le nombre fourni est valide (entre 1 et 100)
             if (isNaN(amount) || amount < 1 || amount > 100) {
                 // Envoie un message d'erreur si le nombre est invalide
-                return await message.reply(`> Coucou \`${userName}\` ❤ \n> Veuillez fournir un nombre valide entre 1 et 100 !`);
+                return await message.channel.send(`> Coucou \`${userName}\` ❤ \n> Veuillez fournir un nombre valide entre 1 et 100 !`);
             }
 
             // Récupérer les messages dans le canal (maximum 100 messages)
@@ -27,7 +27,7 @@ module.exports = {
             // Vérifie si des messages à supprimer ont été trouvés
             if (messagesToDelete.length === 0) {
                 // Si aucun message n'a été trouvé à supprimer, envoie un message d'erreur
-                return await message.reply(`> Coucou \`${userName}\` ❤ \n> Aucun message trouvé à supprimer !`);
+                return await message.channel.send(`> Coucou \`${userName}\` ❤ \n> Aucun message trouvé à supprimer !`);
             }
 
             // Supprimer chaque message
@@ -36,13 +36,13 @@ module.exports = {
             }
 
             // Envoie une confirmation de la suppression, qui s'auto-supprime après 5 secondes
-            const confirmation = await message.reply(`> Coucou \`${userName}\` ❤ \n> J'ai supprimé \`${messagesToDelete.length}\` message(s) !`);
+            const confirmation = await message.channel.send(`> Coucou \`${userName}\` ❤ \n> J'ai supprimé \`${messagesToDelete.length}\` message(s) !`);
             setTimeout(() => confirmation.delete(), 5000); // Auto-suppression du message de confirmation après 5 secondes
 
         } catch (error) {
             console.error(error); // Affiche l'erreur dans la console si une erreur survient
             // Envoie un message d'erreur générique si une exception est levée
-            await message.reply(`> Coucou \`${userName}\` ❤ \n> Erreur lors de la suppression des messages !`);
+            await message.channel.send(`> Coucou \`${userName}\` ❤ \n> Erreur lors de la suppression des messages !`);
         }
     }
 };
