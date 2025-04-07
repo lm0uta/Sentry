@@ -11,13 +11,17 @@ module.exports = {
         const commonServers = []; // Initialise un tableau pour stocker les serveurs en commun
 
         // Parcourir tous les serveurs auxquels le bot est connecté
-        message.client.guilds.cache.forEach(guild => {
-            // Vérifie si l'utilisateur est membre du serveur
-            const member = guild.members.cache.get(userId);
-            if (member) {
-                commonServers.push(guild.name); // Si l'utilisateur est membre, ajoute le nom du serveur au tableau
+        for (const guild of message.client.guilds.cache.values()) {
+            try {
+                // Récupère le membre dans le serveur, en s'assurant que le cache est chargé
+                const member = await guild.members.fetch(userId).catch(() => null);
+                if (member) {
+                    commonServers.push(guild.name); // Si l'utilisateur est membre, ajoute le nom du serveur au tableau
+                }
+            } catch (error) {
+                console.error(`Erreur lors de la récupération du membre pour le serveur ${guild.name}:`, error);
             }
-        });
+        }
 
         // Vérifie si des serveurs en commun ont été trouvés
         if (commonServers.length > 0) {
