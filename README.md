@@ -1,4 +1,4 @@
-```markdown
+
 # Discord Self-Bot - Commande de gestion avec Whitelist
 
 Ce projet contient un **self-bot** Discord qui permet de gérer certaines commandes via une whitelist. Le bot utilise des commandes pour ajouter, retirer et lister des utilisateurs dans une whitelist spécifique pour chaque commande.
