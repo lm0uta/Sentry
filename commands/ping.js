@@ -2,6 +2,7 @@ module.exports = {
     name: 'ping', // Nom de la commande
     description: 'Ping command', // Description de la commande
     async execute(message) {
+        console.log('Executing ping command...'); // Vérifie que la commande est exécutée
         const userName = message.author.username; // Récupère le nom d'utilisateur de l'auteur du message
         const wsPing = message.client.ws.ping; // Récupère le ping du WebSocket du client (la latence avec le serveur Discord)
 

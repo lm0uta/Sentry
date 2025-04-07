@@ -16,13 +16,22 @@ const loadCommands = () => {
     const commandFiles = fs.readdirSync('./commands') // Récupère les fichiers dans le dossier 'commands'
         .filter(file => file.endsWith('.js')); // Filtre pour ne garder que les fichiers '.js'
 
-    // Pour chaque fichier de commande, on les charge et on les ajoute à la Map
-    for (const file of commandFiles) {
-        const command = require(`./commands/${file}`); // Charge la commande depuis le fichier
-        client.commands.set(command.name, command); // Ajoute la commande à la Map avec son nom comme clé
+    if (commandFiles.length === 0) {
+        console.log('Aucune commande trouvée dans le dossier "commands"');
     }
+
+    commandFiles.forEach((file) => {
+        try {
+            const command = require(`./commands/${file}`); // Charge la commande depuis le fichier
+            client.commands.set(command.name, command); // Ajoute la commande à la Map avec son nom comme clé
+            console.log(`Loaded command: ${command.name}`);
+        } catch (error) {
+            console.error(`Failed to load command ${file}:`, error); // Affiche une erreur si la commande ne se charge pas correctement
+        }
+    });
     console.log(`Loaded ${commandFiles.length} commands`); // Affiche combien de commandes ont été chargées
 };
+
 
 // Fonction pour récupérer la whitelist à partir du fichier JSON
 const whitelistPath = './whitelist.json'; // Chemin vers le fichier whitelist
@@ -51,24 +60,37 @@ client.on('messageCreate', async (message) => {
     const args = message.content.slice(prefix.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase(); // Récupère le nom de la commande
 
+    // Affiche la commande reçue pour débogage
+    console.log('Received command:', commandName);
+
     // Récupère la commande correspondante à partir de la Map
     const command = client.commands.get(commandName);
-    if (!command) return; // Si la commande n'existe pas, on arrête l'exécution
+    if (!command) {
+        console.log(`Command "${commandName}" not found`);
+        return; // Si la commande n'existe pas, on arrête l'exécution
+    }
 
-    // Récupérer la whitelist et vérifier si l'utilisateur est autorisé à utiliser la commande
-    const whitelist = getWhitelist();
-    const allowed = !whitelist[commandName] || whitelist[commandName].includes(message.author.id);
+    // Vérifie si l'exécuteur est le bot (en utilisant l'ID du bot)
+    if (message.author.id === client.user.id) {
+        // Si c'est le bot, on autorise l'exécution sans vérifier la whitelist
+        console.log(`Bot is executing the command "${commandName}" without whitelist check.`);
+    } else {
+        // Récupérer la whitelist et vérifier si l'utilisateur est autorisé à utiliser la commande
+        const whitelist = getWhitelist();
+        const allowed = !whitelist[commandName] || whitelist[commandName].includes(message.author.id);
 
-    // Si l'utilisateur n'est pas autorisé, on arrête l'exécution
-    if (!allowed) {
-        return; // Pas de message d'erreur ici pour éviter de révéler si l'utilisateur est sur la whitelist
+        // Si l'utilisateur n'est pas autorisé, on arrête l'exécution
+        if (!allowed) {
+            console.log(`User ${message.author.username} is not allowed to use command "${commandName}"`);
+            return; // Pas de message d'erreur ici pour éviter de révéler si l'utilisateur est sur la whitelist
+        }
     }
 
     try {
         // Exécute la commande avec les arguments
         await command.execute(message, args);
     } catch (error) {
-        console.error(error); // Affiche l'erreur dans la console
+        console.error('Error executing command:', error); // Affiche l'erreur dans la console
         await message.reply('There was an error executing that command!'); // Informe l'utilisateur en cas d'erreur
     }
 });

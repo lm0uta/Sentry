@@ -2,6 +2,7 @@ module.exports = {
     name: 'info', // Nom de la commande
     description: 'Récupère des informations sur un utilisateur spécifié.', // Description de la commande
     async execute(message, args) {
+        console.log('Commande info exécutée'); // Log pour le débogage
         // Si aucun argument n'est fourni, on prend l'auteur du message
         const user = args.length > 0
             ? message.mentions.users.first() || message.client.users.cache.get(args[0])
