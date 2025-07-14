@@ -1,90 +1,88 @@
+# Discord Self-Bot – Command Management with Whitelist
 
-# Discord Self-Bot - Commande de gestion avec Whitelist
+This project includes a **Discord self-bot** that allows managing specific commands through a whitelist system. The bot provides commands to add, remove, and list users in a dedicated whitelist for each command.
 
-Ce projet contient un **self-bot** Discord qui permet de gérer certaines commandes via une whitelist. Le bot utilise des commandes pour ajouter, retirer et lister des utilisateurs dans une whitelist spécifique pour chaque commande.
+> **Warning:** This is a **self-bot** and is **intended for educational purposes only**. The use of **self-bots** violates [Discord's Terms of Service](https://discord.com/terms), which may result in your account being suspended or terminated. **The author of this project is not responsible for any consequences of its use.**
 
-> **Avertissement :** Ce projet est un **self-bot** et est **destiné uniquement à des fins éducatives**. L'utilisation de **self-bots** enfreint les [Conditions d'utilisation de Discord](https://discord.com/terms), ce qui peut entraîner la suspension ou la suppression de votre compte Discord. **L'auteur de ce projet n'est en aucun cas responsable des conséquences de son utilisation**.
+## Prerequisites
 
-## Prérequis
+Before running the bot, make sure you have the following tools installed:
 
-Avant de lancer le bot, assurez-vous que vous avez installé les outils suivants :
-
-- [Node.js](https://nodejs.org/) (version 16 ou supérieure recommandée)
-- [npm](https://www.npmjs.com/) (le gestionnaire de paquets pour Node.js)
+* [Node.js](https://nodejs.org/) (version 16 or higher recommended)
+* [npm](https://www.npmjs.com/) (Node.js package manager)
 
 ## Installation
 
-1. **Clonez le repository :**
+1. **Clone the repository:**
 
-   Si vous n'avez pas déjà le code source du projet, clonez-le avec la commande suivante :
+   If you haven't already, clone the source code using the following command:
 
    ```bash
-   git clone <url-du-repository>
-   cd <nom-du-dossier-du-projet>
+   git clone <repository-url>
+   cd <project-folder-name>
    ```
 
-2. **Installez les dépendances :**
+2. **Install dependencies:**
 
-   Ouvrez une console ou un terminal dans le dossier du projet et exécutez la commande suivante pour installer toutes les dépendances du projet :
+   Open a terminal in the project directory and run:
 
    ```bash
    npm install
    ```
 
-   Si vous ne voulez pas installer les modules manuellement à chaque fois, vous pouvez également utiliser le fichier `start.bat` qui s'assurera que les modules sont installés avant de lancer le bot.
+   If you don’t want to install modules manually every time, you can also use the `start.bat` file. It ensures that all required modules are installed before launching the bot.
 
-3. **Configurez les variables d'environnement :**
+3. **Set up environment variables:**
 
-   Créez un fichier `.env` à la racine du projet et ajoutez-y votre token Discord :
+   Create a `.env` file at the root of the project and add your Discord token:
 
    ```
    DISCORD_TOKEN=your-bot-token-here
    ```
 
-   Remplacez `your-bot-token-here` par le token de votre compte Discord. **Ne partagez pas ce token avec d'autres personnes**.
+   Replace `your-bot-token-here` with your actual Discord account token. **Do not share this token with anyone.**
 
-## Lancer le bot
+## Running the Bot
 
-Pour lancer le bot, exécutez le fichier `start.bat` en double-cliquant dessus, ou vous pouvez également lancer le bot manuellement avec la commande suivante :
+To start the bot, either double-click the `start.bat` file, or run the following command manually:
 
 ```bash
 npm start
 ```
 
-Si vous utilisez `start.bat`, le script vérifiera si les modules sont installés, et s'ils ne le sont pas, il les installera automatiquement avant de démarrer le bot.
+If you're using `start.bat`, the script will check for missing modules and install them automatically before starting the bot.
 
-## Commandes disponibles
+## Available Commands
 
-### `!whitelist <add|remove|list> <commande> [@user]`
+### `!whitelist <add|remove|list> <command> [@user]`
 
-Cette commande permet de gérer la whitelist pour une commande spécifique. Le bot peut ajouter, retirer ou lister les utilisateurs autorisés pour une commande particulière.
+This command allows you to manage the whitelist for a specific command. The bot can add, remove, or list users authorized to use that command.
 
-#### Actions disponibles :
+#### Available actions:
 
-- `add` : Ajoute un utilisateur à la whitelist de la commande spécifiée.
-- `remove` : Retire un utilisateur de la whitelist de la commande spécifiée.
-- `list` : Affiche la liste des utilisateurs dans la whitelist pour une commande donnée.
+* `add` – Adds a user to the whitelist for the specified command.
+* `remove` – Removes a user from the whitelist for the specified command.
+* `list` – Displays all users in the whitelist for a given command.
 
-### Autres commandes personnalisées
+### Other Custom Commands
 
-Le bot peut être configuré pour exécuter d'autres actions comme la gestion des salons vocaux, l'affichage des informations sur l'utilisateur, etc. Consultez le code pour plus de détails sur les commandes disponibles.
+The bot can also be configured to perform various other actions, such as managing voice channels, displaying user information, and more. Check the source code for additional available commands.
 
-## Développement
+## Development
 
-Si vous souhaitez contribuer ou ajouter de nouvelles fonctionnalités, vous pouvez cloner le repository, créer une branche pour vos modifications, puis soumettre une pull request.
+If you'd like to contribute or add new features, you’re welcome to fork the repository, create a feature branch, and submit a pull request.
 
-1. Clonez ce repository.
-2. Créez une nouvelle branche (`git checkout -b feature-nom-de-la-fonctionnalité`).
-3. Apportez vos modifications.
-4. Commitez vos changements (`git commit -m 'Ajout de nouvelle fonctionnalité'`).
-5. Poussez vos changements (`git push origin feature-nom-de-la-fonctionnalité`).
-6. Créez une pull request.
+1. Clone this repository.
+2. Create a new branch (`git checkout -b feature-feature-name`).
+3. Make your changes.
+4. Commit your changes (`git commit -m 'Add new feature'`).
+5. Push your changes (`git push origin feature-feature-name`).
+6. Open a pull request.
 
-## Licence
+## License
 
-Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
 
 ---
 
-**Avertissement final :** N'oubliez pas que l'utilisation de self-bots enfreint les conditions d'utilisation de Discord. Utilisez ce code à vos propres risques, et uniquement à des fins éducatives.
-```
+**Final Warning:** Keep in mind that using self-bots violates Discord’s Terms of Service. Use this code at your own risk and for educational purposes only.
